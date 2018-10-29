@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+    @keyframes rotate{
+        from{
+           transform: rotateX(30deg) rotateY(-20deg);
+           left: 0;
+        }
+
+        to{
+           transform: rotateX(1123deg) rotateY(700deg);
+           left: 1200px;
+        }
+    }
+
+    div{
+        box-sizing: border-box;
+    }
+
+    button.lf-btn.btn-primary{
+        position: absolute;
+        width:75px;
+        height: 30px;
+        color: #fff;
+        border-color: #2e6da4;
+        background-color: #337ab7;
+    }
+
+		.cube{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-top: 250px;
+            transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(-20deg);
+            animation: rotate 8s infinite alternate;
+        }
+
+    .cube .face{
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        font-size: 100px;
+        color: #fff;
+        line-height: 300px;
+        opacity: .3;
+        transform: rotateX(30deg) rotateY(-20deg);
+        animation-duration: 8s;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+    }
+
+    .cube .face.inner-face{
+        left: 50%;
+        top: 50%;
+        width: 200px;
+        height: 200px;
+        margin: -100px 0 0 -100px;
+        font-size: 60px;
+        line-height: 200px;
+        opacity: 1;
+    }
+
+    .cube .face.face-1{
+        background-color: red;
+        transform: rotateX(90deg) translateZ(150px);
+    }
+
+    .cube .face.face-2{
+        background-color: orange;
+        transform: rotateX(-90deg) translateZ(150px);
+    }
+
+    .cube .face.face-3{
+        background-color: purple;
+        transform: rotateY(-90deg) translateZ(150px);
+    }
+
+    .cube .face.face-4{
+        background-color: blue;
+        transform: rotateY(90deg) translateZ(150px);
+    }
+
+    .cube .face.face-5{
+        background-color: pink;
+        transform: translateZ(150px);
+    }
+
+    .cube .face.face-6{
+        background-color: green;
+        transform: translateZ(-150px);
+    }
+
+    .cube .face.inner-face.face-11{
+        background-color: green;
+        transform: rotateX(90deg) translateZ(100px); 
+    }
+
+    .cube .face.inner-face.face-22{
+        background-color: pink;
+        transform: rotateX(-90deg) translateZ(100px); 
+    }
+
+    .cube .face.inner-face.face-33{
+        background-color: blue;
+        transform: rotateY(-90deg) translateZ(100px);
+    }
+
+    .cube .face.inner-face.face-44{
+        background-color: purple;
+        transform: rotateY(90deg) translateZ(100px);
+    }
+
+    .cube .face.inner-face.face-55{
+        background-color: orange;
+        transform: translateZ(100px);
+    }
+
+    .cube .face.inner-face.face-66{
+        background-color: red;
+        transform: translateZ(-100px);
+    }
+	</style>
+</head>
+<body>
+   <button class="lf-btn btn-primary">button</button>
+
+   <div class="cube">
+       <div class="face face-1">1</div>
+       <div class="face face-2">2</div>
+       <div class="face face-3">3</div>
+       <div class="face face-4">4</div>
+       <div class="face face-5">5</div>
+       <div class="face face-6">6</div>
+       <div class="face inner-face face-11">11</div>
+       <div class="face inner-face face-22">22</div>
+       <div class="face inner-face face-33">33</div>
+       <div class="face inner-face face-44">44</div>
+       <div class="face inner-face face-55">55</div>
+       <div class="face inner-face face-66">66</div>
+   </div>
+
+  <script type="text/javascript">
+    var oBtn = document.getElementsByClassName('lf-btn')[0],
+        oBox = document.getElementsByClassName('cube')[0],
+        flag = false;
+
+    addEvent(oBtn, 'click', function(){
+      if(!flag){
+        oBox.style.animationPlayState = 'paused';
+        flag = true;
+      }else{
+        oBox.style.animationPlayState = 'running';
+        flag = false;
+      }
+    })
+
+    function addEvent(el, type, fn){
+      if(el.addEventListener){
+        el.addEventListener(type, fn, false);
+      }else if(el.attachEvent){
+        el.attachEvent('on' + type, function(){
+          fn.call(el);
+        })
+      }else{
+        el['on' + type] = fn;
+      }
+    }
+  </script>
+</body>
+</html>
